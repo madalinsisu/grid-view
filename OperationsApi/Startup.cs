@@ -1,3 +1,5 @@
+using AutoMapper;
+using AutoMapper.EquivalencyExpression;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace OperationsApi
 {
@@ -34,6 +37,14 @@ namespace OperationsApi
             services.AddDbContext<OperationsDBContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("ConnectionString")));
             services.AddDatabaseDeveloperPageExceptionFilter();
+
+            services.AddAutoMapper(
+                config =>
+                {
+                    config.AddCollectionMappers();
+                },
+                Assembly.GetExecutingAssembly()
+            );
 
             services.AddSwaggerGen(c =>
             {
