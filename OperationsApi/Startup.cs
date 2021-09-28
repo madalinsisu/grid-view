@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using OperationsApi.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,11 @@ namespace OperationsApi
         {
 
             services.AddControllers();
+
+            services.AddDbContext<OperationsDBContext>(options =>
+               options.UseSqlServer(Configuration.GetConnectionString("ConnectionString")));
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OperationsApi", Version = "v1" });
