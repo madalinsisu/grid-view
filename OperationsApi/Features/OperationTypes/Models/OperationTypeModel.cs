@@ -8,6 +8,6 @@ namespace OperationsApi.Features.OperationTypes.Models
         public int ID { get; set; }
         public string Name { get; set; }
 
-        public List<OperationModel> Operations { get; set; }
+        // public List<OperationModel> Operations { get; set; }
     }
 }

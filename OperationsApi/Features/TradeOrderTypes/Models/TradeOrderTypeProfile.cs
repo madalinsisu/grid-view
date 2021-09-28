@@ -8,6 +8,7 @@ namespace OperationsApi.Features.TradeOrderTypes.Models
         public TradeOrderTypeProfile()
         {
             CreateMap<TradeOrderType, TradeOrderTypeModel>();
+                // .ForMember(dest => dest.TradeOrders, src => src.Ignore());
         }
     }
 }

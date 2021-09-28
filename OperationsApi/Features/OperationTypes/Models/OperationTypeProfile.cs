@@ -8,6 +8,7 @@ namespace OperationsApi.Features.OperationTypes.Models
         public OperationTypeProfile()
         {
             CreateMap<OperationType, OperationTypeModel>();
+                // .ForMember(dest => dest.Operations, src => src.Ignore());
         }
     }
 }

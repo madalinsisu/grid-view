@@ -13,8 +13,8 @@ namespace OperationsApi.Features.Operations.Models
         public decimal Amount { get; set; }
 
         public OperationTypeModel OperationType { get; set; }
-        public List<DepositModel> Deposits { get; set; }
-        public List<TradeOrderModel> TradeOrders { get; set; }
-        public List<WithdrawalModel> Withdrawals { get; set; }
+        //public List<DepositModel> Deposits { get; set; }
+        //public List<TradeOrderModel> TradeOrders { get; set; }
+        //public List<WithdrawalModel> Withdrawals { get; set; }
     }
 }

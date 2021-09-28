@@ -16,6 +16,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Reflection;
+using OperationsApi.Features.Deposits;
+using OperationsApi.Features.Operations;
+using OperationsApi.Features.TradeOrders;
+using OperationsApi.Features.Withdrawals;
+using OperationsApi.Features.OperationTypes;
+using OperationsApi.Features.TradeOrderTypes;
 
 namespace OperationsApi
 {
@@ -45,6 +51,13 @@ namespace OperationsApi
                 },
                 Assembly.GetExecutingAssembly()
             );
+
+            services.AddTransient<DepositService>();
+            services.AddTransient<OperationService>();
+            services.AddTransient<TradeOrderService>();
+            services.AddTransient<WithdrawalService>();
+            services.AddTransient<OperationTypeService>();
+            services.AddTransient<TradeOrderTypeService>();
 
             services.AddSwaggerGen(c =>
             {

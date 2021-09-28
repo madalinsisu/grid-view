@@ -7,6 +7,6 @@ namespace OperationsApi.Features.TradeOrderTypes.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public List<TradeOrderModel> TradeOrders { get; set; }
+        // public List<TradeOrderModel> TradeOrders { get; set; }
     }
 }
