@@ -22,6 +22,8 @@ using OperationsApi.Features.TradeOrders;
 using OperationsApi.Features.Withdrawals;
 using OperationsApi.Features.OperationTypes;
 using OperationsApi.Features.TradeOrderTypes;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using OperationsApi.Infrastructure.Routing;
 
 namespace OperationsApi
 {
@@ -38,7 +40,10 @@ namespace OperationsApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Conventions.Add(new RouteTokenTransformerConvention(new KebabCaseRoutingConvention()));
+            });
 
             services.AddDbContext<OperationsDBContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("ConnectionString")));

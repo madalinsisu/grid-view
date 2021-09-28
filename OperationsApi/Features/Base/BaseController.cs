@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using OperationsApi.Infrastructure.Models;
+using OperationsApi.Infrastructure.Extensions;
 
 namespace OperationsApi.Features.Base
 {
@@ -23,10 +25,19 @@ namespace OperationsApi.Features.Base
         }
 
         [HttpGet]
-        public async Task<IEnumerable<TModel>> GetAllAsync()
+        public async Task<PaginatedResult<TModel>> GetAllAsync([FromQuery] QueryParameters parameters = null)
         {
-            var entities = service.GetAllQueryable().ToList();
-            return await MapEntitiesToModelsAsync(entities);
+            var entities = (parameters.IsEmpty()
+                ? service.GetAllQueryable() 
+                : service.GetAllQueryable().Skip((parameters.PageNumber - 1) * parameters.PageSize).Take(parameters.PageSize))
+                .ToList();
+            var mappedResult = await MapEntitiesToModelsAsync(entities);
+            var result = new PaginatedResult<TModel>
+            {
+                Items = mappedResult,
+                TotalCount = mappedResult.Count()
+            };
+            return result;
         }
 
         protected virtual Task<IEnumerable<TModel>> MapEntitiesToModelsAsync(IEnumerable<TEntity> entities)
