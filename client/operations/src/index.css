@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.flex-item, .flex-item-button {
+  color: black;
+  margin: 10px;
+  text-align: center;
+  width: 100px;
+}
+
+.flex-item-button {
+  font-weight: 700;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0px;
+}
+
+.flex-item-button:hover {
+  background-color: lightgray;
+}

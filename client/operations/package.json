@@ -12,6 +12,7 @@
     "@types/react-dom": "^17.0.9",
     "axios": "^0.21.4",
     "react": "^17.0.2",
+    "react-custom-events": "^1.0.5",
     "react-data-table-component": "^7.3.1",
     "react-dom": "^17.0.2",
     "react-dropdown": "^1.9.2",
