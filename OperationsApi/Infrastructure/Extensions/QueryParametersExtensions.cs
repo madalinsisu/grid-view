@@ -6,7 +6,7 @@ namespace OperationsApi.Infrastructure.Extensions
     {
         public static bool IsEmpty(this QueryParameters parameters)
         {
-            return parameters?.PageSize > 0 && parameters?.PageNumber > 0;
+            return !(parameters?.PageSize > 0 && parameters?.PageNumber > 1);
         }
     }
 }
