@@ -24,7 +24,6 @@ export const PaginatorComponent: React.FC = () => {
 
     useCustomEventListener('paginator-total-changed', (data: number) => {
         const pagesCount = data < state.pageSize ? 1 : Math.ceil(data / state.pageSize);
-        debugger;
         if (lastSelectedPagesCount !== pagesCount) {
             setState({ ...state, pagesCount: pagesCount });
         }
