@@ -35,7 +35,7 @@ namespace OperationsApi.Features.Base
             var result = new PaginatedResult<TModel>
             {
                 Items = mappedResult,
-                TotalCount = mappedResult.Count()
+                TotalCount = service.GetAllQueryable().Count()
             };
             return result;
         }
