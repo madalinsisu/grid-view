@@ -12,6 +12,7 @@ export const PaginatorComponent: React.FC = () => {
 
 
     const pageNumberOptions = ["1", "3", "5", "10", "20"];
+    let lastSelectedPagesCount: number = 1;
 
     useEffect(() => {
         emitCustomEvent('paginator-changed', state);
@@ -23,14 +24,18 @@ export const PaginatorComponent: React.FC = () => {
 
     useCustomEventListener('paginator-total-changed', (data: number) => {
         const pagesCount = data < state.pageSize ? 1 : Math.ceil(data / state.pageSize);
-        setState({ ...state, pagesCount: pagesCount });
+        debugger;
+        if (lastSelectedPagesCount !== pagesCount) {
+            setState({ ...state, pagesCount: pagesCount });
+        }
     });
 
     function onPageSizeChangged(arg: Option) {
-        setState({ ...state, pageSize: Number(arg.value) });
+        setState({ ...state, pageSize: Number(arg.value), selectedPage: 1 });
     }
 
     function onPageNumberClicked(arg: number) {
+        lastSelectedPagesCount = state.pagesCount;
         setState({ ...state, selectedPage: arg });
     }
 
@@ -41,7 +46,7 @@ export const PaginatorComponent: React.FC = () => {
                     <Dropdown options={pageNumberOptions} value={state.pageSize.toString()} onChange={onPageSizeChangged} placeholder="Select an option" />
                 </div>
                 <div className="flex-item flex-container">
-                    {Array.from(Array(state.pagesCount).keys()).filter(x => !!x)
+                    {Array.from(Array(state.pagesCount + 1).keys()).filter(x => !!x)
                         .map(pageNumber =>
                             <div style={{ color: pageNumber === state.selectedPage ? 'blue' : 'black' }}
                                 className="flex-item-button" key={pageNumber}
